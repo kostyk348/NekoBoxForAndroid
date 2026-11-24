@@ -11,6 +11,9 @@ on:
       play:
         description: "Play: If want ignore"
         required: false
+permissions:
+  contents: write
+
 jobs:
   hedge:
     name: Hedge Build (Rust anti-drop tunnel)
