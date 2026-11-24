@@ -1,0 +1,10 @@
+[package]
+name = "hedge"
+version = "0.1.0"
+edition = "2021"
+description = "Прозрачный CONNECT-туннель с повтором TLS-рукопожатия: гасит обрывы до первого байта ответа"
+license = "MIT"
+
+[[bin]]
+name = "hedge"
+path = "src/main.rs"

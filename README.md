@@ -99,3 +99,27 @@ Android GUI:
 Web Dashboard:
 
 - [Yacd-meta](https://github.com/MetaCubeX/Yacd-meta)
+
+
+## Hedge (fork addition) — анти-обрыв TLS
+
+Этот форк встраивает **hedge** — локальный SOCKS5-туннель (Rust, std-only), который
+повторяет оборванное TLS-рукопожатие: пока сервер не ответил первым байтом, клиентские
+байты буферизуются, при обрыве соединение переоткрывается и байты отправляются заново.
+После первого байта ответа — чистая перекачка. UDP (DNS) — через UDP ASSOCIATE.
+
+- Бинарник собирается в CI (`hedge` job: rust + NDK → `libhedge.so` в jniLibs) и стартует
+  автоматически вместе с VPN-профилем (`HedgeRunner`, слушает `127.0.0.1:7891`).
+- Как пользоваться: добавьте профиль **SOCKS5 → 127.0.0.1:7891** (UDP включён) и подключайтесь.
+- Лог: кеш приложения `cache/hedge.log`. Ошибки рукопожатия видны как `handshake retried`.
+- Конфликт VPN: Android допускает один активный VpnService — при подключении hedge-профиля
+  другой VPN будет отключён (и наоборот).
+
+### Hedge (EN)
+
+This fork embeds **hedge** — a local SOCKS5 tunnel (Rust, std-only) that replays broken
+TLS handshakes: client bytes are buffered until the server responds with its first byte;
+on a drop the connection is re-dialed and the bytes are replayed. UDP (DNS) goes through
+UDP ASSOCIATE. The binary is built in CI and starts automatically with the VPN profile
+(listening on `127.0.0.1:7891`). Add a **SOCKS5 → 127.0.0.1:7891** profile and connect.
+Android allows a single active VpnService at a time.

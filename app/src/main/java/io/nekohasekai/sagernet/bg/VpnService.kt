@@ -38,6 +38,7 @@ class VpnService : BaseVpnService(),
     override var upstreamInterfaceName: String? = null
 
     override suspend fun startProcesses() {
+        HedgeRunner.start(this)
         DataStore.vpnService = this
         super.startProcesses() // launch proxy instance
     }
@@ -54,6 +55,7 @@ class VpnService : BaseVpnService(),
     override fun killProcesses() {
         conn?.close()
         conn = null
+        HedgeRunner.stop()
         super.killProcesses()
     }
 
