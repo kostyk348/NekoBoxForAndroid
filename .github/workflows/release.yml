@@ -96,7 +96,7 @@ jobs:
             app/libs/libcore.aar
           key: ${{ hashFiles('.github/workflows/*', 'golang_status', 'libcore_status') }}
       - name: Install NDK 25.0.8775105
-        run: yes | sdkmanager --install "ndk;25.0.8775105" > /dev/null || sdkmanager --install "ndk;25.0.8775105"
+        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install "ndk;25.0.8775105" > /dev/null
       - name: Gradle cache
         uses: actions/cache@v4
         with:
@@ -159,7 +159,7 @@ jobs:
             app/libs/libcore.aar
           key: ${{ hashFiles('.github/workflows/*', 'golang_status', 'libcore_status') }}
       - name: Install NDK 25.0.8775105
-        run: yes | sdkmanager --install "ndk;25.0.8775105" > /dev/null || sdkmanager --install "ndk;25.0.8775105"
+        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install "ndk;25.0.8775105" > /dev/null
       - name: Gradle cache
         uses: actions/cache@v4
         with:
