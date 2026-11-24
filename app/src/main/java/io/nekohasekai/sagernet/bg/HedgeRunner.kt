@@ -47,7 +47,7 @@ object HedgeRunner {
                 } catch (_: Exception) {
                 }
             }.apply { isDaemon = true }.start()
-            Logs.i("hedge: started on 127.0.0.1:$PORT (pid ${proc?.pid()}, log ${log.absolutePath})")
+            Logs.i("hedge: started on 127.0.0.1:$PORT (log ${log.absolutePath})")
         } catch (e: Exception) {
             Logs.w("hedge: start failed: $e")
             process = null
