@@ -95,6 +95,11 @@ jobs:
           path: |
             app/libs/libcore.aar
           key: ${{ hashFiles('.github/workflows/*', 'golang_status', 'libcore_status') }}
+      - name: JDK 17 (Kotlin DSL не компилируется под JDK 25 runner'а)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
       - name: Install NDK 25.0.8775105
         run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install "ndk;25.0.8775105" > /dev/null
       - name: Gradle cache
@@ -158,6 +163,11 @@ jobs:
           path: |
             app/libs/libcore.aar
           key: ${{ hashFiles('.github/workflows/*', 'golang_status', 'libcore_status') }}
+      - name: JDK 17 (Kotlin DSL не компилируется под JDK 25 runner'а)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
       - name: Install NDK 25.0.8775105
         run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install "ndk;25.0.8775105" > /dev/null
       - name: Gradle cache
